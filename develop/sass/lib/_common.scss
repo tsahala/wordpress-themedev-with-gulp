@@ -1,0 +1,85 @@
+// Common
+body {
+    //font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: YakuHanJP, 'Hiragino Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: $bg;
+    color: $base;
+		font-weight: 300;
+		@media screen and (min-width: 768px) and (max-width: 1020px) {
+			width: 1020px;
+			margin: 0 auto;
+		}
+}
+a {
+    color: $link;
+    transition: all .2s;
+    &:hover {
+        color: $hover;
+				img {
+					opacity: .7;
+					transition: .5s;
+					backface-visibility: hidden;
+				}
+    }
+		img {
+			transition: .5s;
+			backface-visibility: hidden;
+		}
+}
+h1,h2,h3,h4,h5,h6 {
+    a,a:hover {
+        color: $base;
+        text-decoration: none;
+    }
+}
+// mixin
+@mixin clearfix() {
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+    }
+}
+img {
+	max-width: 100%;
+}
+
+.clearfix {
+	@include clearfix;
+}
+
+
+.site-container {
+	width: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+	@media #{$mq-sm} {
+		width: 1020px;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		box-sizing: border-box;
+	}
+}
+
+
+.sp-display {
+	display: none!important;
+	@media #{$mq-xs} {
+		display: block!important;
+	}
+}
+.sp-nodisplay {
+	display: block!important;
+	@media #{$mq-xs} {
+		display: none!important;
+	}
+}
+
+@mixin font-mincho() {
+	font-family: Georgia, "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+@mixin font-not-yakuhan() {
+	font-family: 'Hiragino Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
