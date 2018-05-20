@@ -9,6 +9,7 @@ var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 var ejs = require("gulp-ejs");
 var plumber = require("gulp-plumber");
+var notify = require("gulp-notify");
 
 // Sass
 
@@ -29,6 +30,7 @@ gulp.task('sass', function () {
 
 gulp.task('js', function() {
     gulp.src(['./develop/js/*.js'])
+				.pipe(plumber({errorHandler: notify.onError('<%= error %>')}))
         .pipe(concat('scripts.js'))
         .pipe(uglify({preserveComments: 'some'})) // Keep some comments
         .pipe(gulp.dest('./js'))
