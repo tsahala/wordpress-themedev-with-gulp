@@ -1,8 +1,9 @@
 *
-*/
 
 !readme.md
 !.gitignore
+!.git/
 !package.json
 !gulpfile.js
-!/develop/
+!develop/
+!develop/*
