@@ -5,4 +5,4 @@
 !.gitignore
 !package.json
 !gulpfile.js
-!/develop
+!/develop/
