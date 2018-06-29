@@ -7,7 +7,6 @@ var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
-var ejs = require("gulp-ejs");
 var plumber = require("gulp-plumber");
 var notify = require("gulp-notify");
 
@@ -39,36 +38,26 @@ gulp.task('js', function() {
 
 // Imagemin
 
-//	gulp.task('imagemin', function() {
-//	    gulp.src(['images/**/*.{png,jpg,gif,svg}'])
-//	        .pipe(imagemin({
-//	            optimizationLevel: 7,
-//	            use: [pngquant({
-//	                quality: '60-80',
-//	                speed: 1
-//	            })]
-//	        }))
-//	        .pipe(gulp.dest('images'));
-//	});
-
-
-// ejs
-/*
-var fs = require('fs');
-var json = JSON.parse(fs.readFileSync("site.json")); // parse json
-gulp.task("ejs", function() {
-    gulp.src(['templates/*.ejs','!' + 'templates/_*.ejs']) // Don't build html which starts from underline
-        .pipe(plumber())
-        .pipe(ejs(json, {"ext": ".html"}))
-        .pipe(gulp.dest('build'))
+gulp.task('imagemin', function() {
+    gulp.src(['./develop/images/**/*.{png,jpg,gif,svg}'])
+		/*
+        .pipe(imagemin({
+            optimizationLevel: 7,
+            use: [pngquant({
+                quality: '60-80',
+                speed: 1
+            })]
+        }))
+				*/
+        .pipe(gulp.dest('images'));
 });
-*/
+
 
 // Static server
 
 gulp.task('browser-sync', function() {
     browserSync({
-        proxy: 'http://localhost:8888/wordpress-dev-01/',
+        proxy: 'http://localhost:8888/',
     });
 });
 
@@ -83,7 +72,6 @@ gulp.task('bs-reload', function () {
 gulp.task('default',['browser-sync'], function() {
     gulp.watch('develop/sass/**/*.scss',['sass']);
     gulp.watch('develop/js/*.js',['js']);
-    // gulp.watch('images/**',['imagemin']);
+    gulp.watch('develop/images/**',['imagemin']);
     gulp.watch("./**/*.php", ['bs-reload']);
-    // gulp.watch(['templates/*.ejs', 'site.json'], ['ejs']);
 });
