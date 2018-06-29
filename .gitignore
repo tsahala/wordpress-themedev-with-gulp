@@ -1,9 +1,3 @@
-*
 
-!readme.md
-!.gitignore
-!.git/
-!package.json
-!gulpfile.js
-!develop/
-!develop/*
+.DS_Store
+node_modules/
