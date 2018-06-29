@@ -1,30 +1,74 @@
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue Regular");
+  font-weight: 200;
+}
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+html {
+  font-family: 'Noto Sans Japanese', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+}
+@media all and (-ms-high-contrast: none)  {
+  html {
+    font-family: Verdana, Meiryo, sans-serif;
+  }
+}
+@media all and (-ms-high-contrast: active) {
+  html {
+    font-family: Verdana, Meiryo, sans-serif;
+  }
+}
+
+
+
+
 // Common
+* {
+	box-sizing: border-box;
+}
+html {
+	font-size: 16px;
+}
 body {
-    //font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-family: YakuHanJP, 'Hiragino Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background: $bg;
     color: $base;
-		font-weight: 300;
-		@media screen and (min-width: 768px) and (max-width: 1020px) {
-			width: 1020px;
-			margin: 0 auto;
-		}
+		font-size: 1rem;
 }
 a {
     color: $link;
     transition: all .2s;
     &:hover {
         color: $hover;
-				img {
-					opacity: .7;
-					transition: .5s;
-					backface-visibility: hidden;
-				}
     }
-		img {
-			transition: .5s;
-			backface-visibility: hidden;
-		}
 }
 h1,h2,h3,h4,h5,h6 {
     a,a:hover {
@@ -40,46 +84,17 @@ h1,h2,h3,h4,h5,h6 {
         clear: both;
     }
 }
-img {
-	max-width: 100%;
-}
 
-.clearfix {
-	@include clearfix;
-}
-
-
-.site-container {
-	width: auto;
-	margin-left: 20px;
-	margin-right: 20px;
-	@media #{$mq-sm} {
-		width: 1020px;
-		margin-left: auto;
-		margin-right: auto;
-		padding-left: 10px;
-		padding-right: 10px;
-		box-sizing: border-box;
-	}
-}
-
-
+// xs display util
 .sp-display {
-	display: none!important;
+	display: none;
 	@media #{$mq-xs} {
-		display: block!important;
+		display: block;
 	}
 }
 .sp-nodisplay {
-	display: block!important;
+	display: block;
 	@media #{$mq-xs} {
-		display: none!important;
+		display: none;
 	}
-}
-
-@mixin font-mincho() {
-	font-family: Georgia, "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;
-}
-@mixin font-not-yakuhan() {
-	font-family: 'Hiragino Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
