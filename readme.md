@@ -16,12 +16,17 @@
 
     $ npm install -g gulp
 
-#### 2) Clone
 
-    $ git clone git@github.com:tsahala/wordpress-themedev-with-gulp.git {wp-theme-name}
-    $ cd {wp-theme-name}
+#### 2) Create your underscores based theme
+
+		Generate theme named {your-theme} at https://underscores.me/.
+
+#### 3) Clone
+
+		$ cd {your-theme}
+    $ git clone git@github.com:tsahala/wordpress-themedev-with-gulp.git
     $ npm install
 
-#### 3) Run gulp
+#### 4) Run gulp
 
     $ gulp
