@@ -6,9 +6,12 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
+var reload = browserSync.reload;
 var plumber = require("gulp-plumber");
 var notify = require("gulp-notify");
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
 
 // Sass
 
@@ -23,6 +26,17 @@ gulp.task('sass', function () {
 				.pipe(sass({outputStyle: 'expanded'}))
         .pipe(gulp.dest('./'))
         .pipe(reload({stream:true}));
+});
+
+// Js-browserify-babelify
+
+gulp.task('browserify', function () {
+		browserify('./develop/js/scripts-core.js', { debug: true })
+		.transform(babelify)
+		.bundle()
+		.on("error", function (err) { console.log("Error : " + err.message); })
+		.pipe(source('/scripts-core.js'))
+		.pipe(gulp.dest('./develop/js'))
 });
 
 // Js-concat-uglify
@@ -72,6 +86,7 @@ gulp.task('bs-reload', function () {
 gulp.task('default',['browser-sync'], function() {
     gulp.watch('develop/sass/**/*.scss',['sass']);
     gulp.watch('develop/js/*.js',['js']);
+    gulp.watch('develop/js/*.js',['browserify']);
     gulp.watch('develop/images/**',['imagemin']);
     gulp.watch("./**/*.php", ['bs-reload']);
 });
