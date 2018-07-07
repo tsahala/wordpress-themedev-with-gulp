@@ -28,15 +28,21 @@ gulp.task('sass', function () {
         .pipe(reload({stream:true}));
 });
 
-// Js-browserify-babelify
+// Js-browserify-babelify-concat-uglify
 
 gulp.task('browserify', function () {
-		browserify('./develop/js/scripts-core.js', { debug: true })
-		.transform(babelify)
-		.bundle()
-		.on("error", function (err) { console.log("Error : " + err.message); })
-		.pipe(source('/scripts-core.js'))
-		.pipe(gulp.dest('./develop/js'))
+		return browserify('./develop/js/scripts-core.js', { debug: true })
+				.transform(babelify)
+				.bundle()
+				.on("error", function (err) { console.log("Error : " + err.message); })
+				.pipe(source('/scripts-core.js'))
+				.pipe(gulp.dest('./develop/js'));
+		gulp.src(['./develop/js/*.js'])
+				.pipe(plumber({errorHandler: notify.onError('<%= error %>')}))
+        .pipe(concat('scripts.js'))
+        .pipe(uglify({preserveComments: 'some'})) // Keep some comments
+        .pipe(gulp.dest('./js'))
+        .pipe(reload({stream:true}));
 });
 
 // Js-concat-uglify
@@ -85,8 +91,8 @@ gulp.task('bs-reload', function () {
 
 gulp.task('default',['browser-sync'], function() {
     gulp.watch('develop/sass/**/*.scss',['sass']);
-    gulp.watch('develop/js/*.js',['js']);
     gulp.watch('develop/js/*.js',['browserify']);
+    //gulp.watch('develop/js/*.js',['js']);
     gulp.watch('develop/images/**',['imagemin']);
     gulp.watch("./**/*.php", ['bs-reload']);
 });
