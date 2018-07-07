@@ -12,6 +12,7 @@ var notify = require("gulp-notify");
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 
 // Sass
 
@@ -30,30 +31,19 @@ gulp.task('sass', function () {
 
 // Js-browserify-babelify-concat-uglify
 
-gulp.task('browserify', function () {
-		return browserify('./develop/js/scripts-core.js', { debug: true })
+gulp.task('js', function () {
+		return browserify('./develop/es6/scripts-core.js', { debug: true })
 				.transform(babelify)
 				.bundle()
 				.on("error", function (err) { console.log("Error : " + err.message); })
-				.pipe(source('/scripts-core.js'))
-				.pipe(gulp.dest('./develop/js'));
-		gulp.src(['./develop/js/*.js'])
+				.pipe(source('scripts-core.js'))
+				.pipe(gulp.dest('./develop/js'))
+				.pipe(buffer())
 				.pipe(plumber({errorHandler: notify.onError('<%= error %>')}))
-        .pipe(concat('scripts.js'))
-        .pipe(uglify({preserveComments: 'some'})) // Keep some comments
-        .pipe(gulp.dest('./js'))
-        .pipe(reload({stream:true}));
-});
-
-// Js-concat-uglify
-
-gulp.task('js', function() {
-    gulp.src(['./develop/js/*.js'])
-				.pipe(plumber({errorHandler: notify.onError('<%= error %>')}))
-        .pipe(concat('scripts.js'))
-        .pipe(uglify({preserveComments: 'some'})) // Keep some comments
-        .pipe(gulp.dest('./js'))
-        .pipe(reload({stream:true}));
+	      .pipe(concat('scripts.js'))
+	      .pipe(uglify({preserveComments: 'some'})) // Keep some comments
+	      .pipe(gulp.dest('./js'))
+	      .pipe(reload({stream:true}));
 });
 
 // Imagemin
@@ -91,8 +81,7 @@ gulp.task('bs-reload', function () {
 
 gulp.task('default',['browser-sync'], function() {
     gulp.watch('develop/sass/**/*.scss',['sass']);
-    gulp.watch('develop/js/*.js',['browserify']);
-    //gulp.watch('develop/js/*.js',['js']);
+    gulp.watch('develop/es6/*.js',['js']);
     gulp.watch('develop/images/**',['imagemin']);
     gulp.watch("./**/*.php", ['bs-reload']);
 });

@@ -8,6 +8,3 @@
     }
   }
 }());
-
-import Inc2734_WP_Share_Buttons from '../../vendor/inc2734/wp-share-buttons/src/assets/js/wp-share-buttons.js';
-new Inc2734_WP_Share_Buttons();
