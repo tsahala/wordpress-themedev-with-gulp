@@ -33,9 +33,9 @@
   src: local("Helvetica Neue Regular");
   font-weight: 200;
 }
-@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700');
 html {
-  font-family: 'Noto Sans Japanese', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
 }
 @media all and (-ms-high-contrast: none)  {
   html {
